@@ -10,7 +10,7 @@ var MySQLStore = require('express-mysql-session')(session);
 var options = {
     host:'localhost',
     user: 'root',
-    password: 'sk7332590',
+    password: '',
     database: 'tour',
 }
 server.use(express.json());
