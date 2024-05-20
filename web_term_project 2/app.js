@@ -7,12 +7,8 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
-var options = {
-    host:'localhost',
-    user: 'root',
-    password: '',
-    database: 'tour',
-}
+var options = process.env.SQL_INFO;
+
 server.use(express.json());
 server.use(express.urlencoded({
     extended: false,
@@ -31,13 +27,7 @@ server.use(express.static(__dirname));
 server.set('view engine','ejs');
 server.set('views','./views');
 // express 는 함수이므로, 반환값을 변수에 저장한다.
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'sk7332590',
-    database: 'tour',
-    port: '3306',
-  });
+const connection = mysql.createConnection(process.env.SQL_INFO);
 
 // 3000 포트로 서버 오픈
 server.listen(3000, () => {
